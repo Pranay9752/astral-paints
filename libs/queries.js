@@ -2,78 +2,128 @@
 import client from './graphql-client';
 const HOMEPAGE_QUERY = `
 {
-  pages(where: {name: "Homepage"}) {
-    nodes {
-      homepage {
-        banners {
-          bannersTitle
-          bannerDescription
-          bannerButton {
-            title
-            url
-            target
-          }
-          bannerImage {
-            node {
-              sourceUrl
-            }
-          }
-        }
-        homeAboutTitle
-        homeAboutSubtitle
-        homeAboutDescription
-        homeAboutButton {
-          title
-          url
-          target
-        }
-        homeAboutVideoImage {
-          node {
-            sourceUrl
-          }
-        }
-        homeAboutVideoUrl
-        homeCategoryTitle
-        homeCategorySubtitle
-        homeServicesTitle
-        homeServicesSubtitle
-        homeColoursTitle
-        homeColoursSubtitle
-        homeColoursButton {
-          title
-          url
-          target
-        }
-        homeJoinTitle
-        homeJoinSubtitle
-        homeJoinDescription
-        homeJoinButton {
-          title
-          url
-          target
-        }
-        homeJoinBackgroundImage {
-          node {
-            sourceUrl
-          }
-        }
-        blogTitle
-        blogSubtitle
-        categories {
-          link
-          title
-          image {
-            node {
-              sourceUrl
-            }
-          }
-        }
-      }
-    }
-  }
-}`;
+pages(where: {name: "Homepage"}) {
+nodes {
+homepage {
+banners {
+bannerImage {
+node {
+sourceUrl
+
+}
+}
+bannersTitle
+bannerDescription
+bannerButton {
+title
+url
+target
+}
+}
+homeAboutTitle
+homeAboutSubtitle
+homeAboutButton {
+target
+title
+url
+}
+homeAboutVideoImage {
+node {
+sourceUrl
+}
+}
+homeAboutVideoUrl
+homeAboutDescription
+homeCategoryTitle
+homeCategorySubtitle
+homeServicesTitle
+homeServicesSubtitle
+homeColoursTitle
+homeColoursSubtitle
+homeColoursButton {
+target
+title
+url
+}
+homeJoinBackgroundImage {
+node {
+sourceUrl
+}
+}
+homeJoinTitle
+homeJoinSubtitle
+homeJoinButton {
+
+target
+title
+url
+}
+homeJoinDescription
+blogTitle
+blogSubtitle
+categories {
+link
+title
+image {
+node {
+sourceUrl
+}
+}
+}
+}
+seo {
+canonical
+metaKeywords
+metaDesc
+title
+opengraphType
+opengraphSiteName
+opengraphTitle
+opengraphDescription
+opengraphUrl
+schema {
+raw
+}
+opengraphImage {
+mediaItemUrl
+}
+}
+}
+}
+allColourCategory(where: {slug: "popular"}) {
+nodes {
+name
+colours {
+nodes {
+title
+
+slug
+colourInfo {
+selectColor
+colourRgb
+}
+}
+}
+}
+}
+blogs {
+nodes {
+featuredImage {
+node {
+sourceUrl
+slug
+}
+}
+slug
+title
+date
+}
+}
+}
+`;
 
 export async function getHomepageData() {
   const data = await client.request(HOMEPAGE_QUERY);
+  console.log("full data: ", data)
   return data.pages.nodes[0].homepage;
 }

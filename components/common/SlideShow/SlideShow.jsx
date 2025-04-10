@@ -31,7 +31,7 @@ const SlideShow = ({ children, className, interval = 3000 }) => {
     return () => clearTimeout(timeoutRef.current);
   }, [index, isPaused, interval, slides.length]);
 
-  return (
+  return ( 
     <div
       className={cn("overflow-hidden relative", className)}
       onMouseEnter={() => setIsPaused(true)}

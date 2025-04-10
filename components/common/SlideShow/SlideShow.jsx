@@ -17,7 +17,7 @@ const SlideShow = ({ children, className }) => {
   const timerRef = useRef(null);
 
   const slides = Children.toArray(children).filter(
-    (child) => child?._owner.name === "Slide"
+    (child) => child?._owner?.name === "Slide"
   );
 
   const extendedSlides = [

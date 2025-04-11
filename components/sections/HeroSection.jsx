@@ -2,29 +2,25 @@ import Image from "next/image";
 import SlideShow from "../common/SlideShow/SlideShow";
 import Slide from "../common/SlideShow/Slide";
 import Link from "next/link";
+import { getAsset } from "@/utils/getAsset";
 
 export default function HeroSection({ data }) {
-  console.log("data: ", data);
   return (
-    <div className="relative">
-      {/* Hero Section */}
-      <section className="relative w-full  m in-h-[500px]">
-        <SlideShow className={"h-[650px]"}>
-          {/* Purple Room Slide */}
+    <div className="relative w-[100vw]">
+      <section id="hero" className="relative overflow-hidden  ">
+        <SlideShow className={"h-[100vh]"}>
           {Array.isArray(data) &&
             data.map((banner, index) => {
-              console.log("banner: ", banner?.bannerButton);
               return (
-                <Slide key={index}>
-                  <div className=" relative container mx-auto px-4 py-16 w-full h-[650px] drop-shadow-sm">
+                <Slide key={index} className="h-[100vh]">
+                  <div className=" relative  px-4 py-16 w-full h-[100vh] drop-shadow-sm">
                     <Image
-                      src={banner.bannerImage.node.sourceUrl}
+                      src={getAsset(banner.bannerImage)}
                       alt={banner.bannersTitle}
                       fill
                       className="absolute object-cover "
                     />
                     <div className="flex flex-col md:flex-row">
-                      {/* Left Content */}
                       <div className="md:w-1/2 z-10 pt-8">
                         <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight mb-4">
                           {banner.bannersTitle || ""}
@@ -39,11 +35,6 @@ export default function HeroSection({ data }) {
                           {banner?.bannerButton?.title || ""}
                         </Link>
                       </div>
-
-                      {/* Right Content - Furniture elements would be positioned here */}
-                      <div className="md:w-1/2 relative">
-                        {/* This area would have the furniture and shelving images */}
-                      </div>
                     </div>
                   </div>
                 </Slide>
@@ -51,6 +42,15 @@ export default function HeroSection({ data }) {
             })}
         </SlideShow>
       </section>
+
+      <div className="absolute -bottom-20 w-screen h-[300px] rotate-2 z-50">
+        <Image
+          src={"/rainbow.png"}
+          alt={"rainbow Image"}
+          fill
+          className="absolute  "
+        />
+      </div>
     </div>
   );
 }

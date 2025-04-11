@@ -1,5 +1,5 @@
 // lib/queries.js
-import client from './graphql-client';
+import client from "./graphql-client";
 const HOMEPAGE_QUERY = `
 {
 pages(where: {name: "Homepage"}) {
@@ -124,6 +124,11 @@ date
 
 export async function getHomepageData() {
   const data = await client.request(HOMEPAGE_QUERY);
-  console.log("full data: ", data)
-  return data.pages.nodes[0].homepage;
+  console.log("full data: ", data);
+  return {
+    seo: data.pages.nodes[0].seo,
+    homepage: data.pages.nodes[0].homepage,
+    blogs: data.blogs.nodes,
+    colors: data.allColourCategory.nodes,
+  };
 }

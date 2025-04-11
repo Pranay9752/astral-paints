@@ -17,9 +17,11 @@ export default function HeroSection({ data }) {
                       src={getAsset(banner.bannerImage)}
                       alt={banner.bannersTitle}
                       fill
-                      className="absolute object-cover "
+                      className="absolute object-cover z-0"
                     />
-                    <div className="flex flex-col md:flex-row">
+                      <div className="absolute inset-0 bg-black/40 z-10" />
+
+                    <div className="flex flex-col md:flex-row absolute w-full top-0 bottom-0  justify-start items-center left-24 z-20">
                       <div className="md:w-1/2 z-10 pt-8">
                         <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight mb-4">
                           {banner.bannersTitle || ""}

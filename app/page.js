@@ -41,6 +41,7 @@ console.log(homepage)
             categories={homepage.categories}
           />
           <ColorSection
+            buttonData={homepage.homeColoursButton}
             subtitle={homepage.homeColoursSubtitle}
             title={homepage.homeColoursTitle}
             colors={colors[0].colours?.nodes || []}

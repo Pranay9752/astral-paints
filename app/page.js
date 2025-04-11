@@ -14,7 +14,7 @@ import Navbar from "@/components/layouts/Navbar";
 
 export default async function HomePage() {
   const { homepage, seo, colors, blogs } = await getHomepageData();
-
+console.log(homepage)
   return (
     <>
       <Seo {...seo} />
@@ -28,6 +28,7 @@ export default async function HomePage() {
             videoUrl={getAsset(homepage.homeAboutVideoImage)}
             title={homepage.homeAboutTitle}
             subtitle={homepage.homeAboutSubtitle}
+            description={homepage.homeAboutDescription}
           />
           <CategorySection
             title={homepage.homeCategoryTitle}
@@ -40,8 +41,8 @@ export default async function HomePage() {
             categories={homepage.categories}
           />
           <ColorSection
-            subtitle={"Colours"}
-            title={colors[0].name}
+            subtitle={homepage.homeColoursSubtitle}
+            title={homepage.homeColoursTitle}
             colors={colors[0].colours?.nodes || []}
           />
           <DealerSection

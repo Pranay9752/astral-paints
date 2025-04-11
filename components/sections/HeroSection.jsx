@@ -6,8 +6,7 @@ import { getAsset } from "@/utils/getAsset";
 
 export default function HeroSection({ data }) {
   return (
-    <div className="relative w-[100vw]">
-      <section id="hero" className="relative overflow-hidden  ">
+      <section id="hero" className="relative   ">
         <SlideShow className={"h-[100vh]"}>
           {Array.isArray(data) &&
             data.map((banner, index) => {
@@ -41,9 +40,7 @@ export default function HeroSection({ data }) {
               );
             })}
         </SlideShow>
-      </section>
-
-      <div className="absolute -bottom-20 w-screen h-[300px] rotate-2 z-50">
+      <div className="absolute -bottom-20 w-full h-[375px] rotat e-2 z-50">
         <Image
           src={"/rainbow.png"}
           alt={"rainbow Image"}
@@ -51,6 +48,7 @@ export default function HeroSection({ data }) {
           className="absolute  "
         />
       </div>
-    </div>
+      </section>
+
   );
 }

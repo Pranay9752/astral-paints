@@ -62,7 +62,7 @@ import { motion } from "framer-motion";
 //     </div>
 //   );
 // };
-const SlideShow = ({ children, autoPlaySpeed = 10000, className }) => {
+const SlideShow = ({ children, autoPlaySpeed = 5000, className }) => {
   const slides = Children.toArray(children);
   const [activeIndex, setActiveIndex] = useState(0);
   const carouselRef = useRef(null);

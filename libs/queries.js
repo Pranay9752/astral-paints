@@ -1,4 +1,5 @@
 // lib/queries.js
+import { cache } from "react";
 import client from "./graphql-client";
 const HOMEPAGE_QUERY = `
 {
@@ -121,14 +122,13 @@ date
 }
 }
 `;
-
-export async function getHomepageData() {
+export const getHomepageData = cache(async function getHomepageData() {
   const data = await client.request(HOMEPAGE_QUERY);
-  console.log("full data: ", data);
+
   return {
     seo: data.pages.nodes[0].seo,
     homepage: data.pages.nodes[0].homepage,
     blogs: data.blogs.nodes,
     colors: data.allColourCategory.nodes,
   };
-}
+});

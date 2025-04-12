@@ -12,12 +12,35 @@ import { getAsset } from "@/utils/getAsset";
 import Footer from "@/components/layouts/Footer";
 import Navbar from "@/components/layouts/Navbar";
 
+export async function generateMetadata() {
+  const { seo } = await getHomepageData();
+
+  return {
+    title: seo.title,
+    description: seo.metaDesc,
+    openGraph: {
+      title: seo.opengraphTitle || seo.title,
+      description: seo.opengraphDescription || seo.metaDesc,
+      url: seo.opengraphUrl,
+      images: [
+        {
+          url: seo.opengraphImage?.mediaItemUrl || "default.jpg",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seo.title,
+      description: seo.metaDesc,
+      images: [seo.opengraphImage?.mediaItemUrl],
+    },
+  };
+}
+
 export default async function HomePage() {
-  const { homepage, seo, colors, blogs } = await getHomepageData();
-console.log(homepage)
+  const { homepage, colors, blogs } = await getHomepageData();
   return (
     <>
-      <Seo {...seo} />
       <main>
         <Navbar />
         <HeroSection data={homepage.banners} />

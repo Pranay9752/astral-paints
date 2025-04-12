@@ -93,13 +93,13 @@ const Navbar = () => {
         <div className="md:hidden bg-[#0260af]">
           <div className="px-4 py-4 space-y-2">
             {navLinks.map((link) => (
-              <Link
+              <button
                 key={link.href}
                 onClick={() => scrollToSection(link.href)}
                 className="block px-3 py-2 rounded hover:bg-blue-600 transition"
               >
                 {link.label}
-              </Link>
+              </button>
             ))}
             <Link href="/enquire" className="block px-3 pt-3">
               <button className="w-full bg-white text-blue-700 font-medium px-4 py-2 rounded-full hover:bg-blue-50 transition">

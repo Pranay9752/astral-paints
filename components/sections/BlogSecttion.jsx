@@ -26,7 +26,7 @@ export default function BlogSection({
           ))}
         </div>
 
-        <div className="relative h-full min-h-[500px]  overflow-hidden group shadow-lg">
+        <div className="relative h-full md:min-h-[500px]  overflow-hidden group shadow-lg">
           <img
             src={blogs[0].featuredImage.node.sourceUrl}
             alt={blogs[0].title}

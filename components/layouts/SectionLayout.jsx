@@ -45,7 +45,7 @@ function SectionLayout({
 
             <motion.div
               className={cn(
-                "h-2 bg-gradient-to-r from-orange-400 rounded-full",
+                "h-2 bg-gradient-to-r from-orange-400 rounded-full hidden md:block",
                 classname
               )}
               initial={{ width: 0, opacity: 0 }}

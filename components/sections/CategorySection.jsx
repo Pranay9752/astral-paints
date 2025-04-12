@@ -15,7 +15,7 @@ export default function CategorySection({ categories, title, subtitle }) {
       id="category"
       title={title}
       subtitle={subtitle}
-      classname={"bg-gradient-to-r from-orange-400"}
+      stroke="orange"
     >
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
         <div className="col-span-2 row-span-2 relative">

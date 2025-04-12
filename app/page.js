@@ -68,7 +68,8 @@ export default async function HomePage() {
         <Navbar />
         <HeroSection data={homepage.banners} />
         <div className="relative flex flex-col gap-12 pb-12">
-          <div className="w-0 md:w-3 lg:w-4 absolute h-full bg-[linear-gradient(to_bottom,#e90000,#ffa94d,#fff176,#a5f59f,#82b1ff)]" />
+          <div className="w-0 md:w-3 lg:w-4 absolute h-full bg-[linear-gradient(to_bottom,#c90100,#f08213,#e7db3d,#03a23f,#00bddb)]" />
+          {/* <div className="w-0 md:w-3 lg:w-4 absolute h-full bg-[linear-gradient(to_bottom,#e90000,#ffa94d,#fff176,#a5f59f,#82b1ff)]" /> */}
           <AboutSection
             buttonInfo={homepage.homeAboutButton}
             videoUrl={getAsset(homepage.homeAboutVideoImage)}

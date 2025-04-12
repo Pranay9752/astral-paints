@@ -35,8 +35,8 @@ export default function ServiceSection({ categories, title, subtitle }) {
     id={'services'}
       title={title}
       subtitle={subtitle}
-      classname={"bg-gradient-to-r from-orange-400"}
-    >
+stroke="yellow"
+>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {services.map((service) => (
           <ServiceCard

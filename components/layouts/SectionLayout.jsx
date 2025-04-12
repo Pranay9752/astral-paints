@@ -3,6 +3,7 @@ import { cn } from "@/utils/cn";
 import React, { useRef } from "react";
 import Button from "../common/ui/button";
 import { motion, useInView } from "framer-motion";
+import BrushStroke from "../common/ui/brushStroke";
 
 function SectionLayout({
   title,
@@ -12,6 +13,7 @@ function SectionLayout({
   children,
   id,
   buttonData,
+  stroke = "red",
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
@@ -43,12 +45,9 @@ function SectionLayout({
               {title || ""}
             </motion.h1>
 
+            
             <motion.div
-              className={cn(
-                "h-2 bg-gradient-to-r from-orange-400 rounded-full ",
-                classname,
-                buttonData && "hidden md:block"
-              )}
+              className={cn(" h-2", buttonData && "hidden md:block")}
               initial={{ width: 0, opacity: 0 }}
               animate={
                 isInView
@@ -56,7 +55,9 @@ function SectionLayout({
                   : { width: 0, opacity: 0 }
               }
               transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
-            />
+            >
+              <BrushStroke strokeColor={stroke} />
+            </motion.div>
           </div>
         </div>
 

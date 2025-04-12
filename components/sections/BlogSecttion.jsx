@@ -1,24 +1,16 @@
-
 import SectionLayout from "../layouts/SectionLayout";
 
 export default function BlogSection({
-    blogs = [],
+  blogs = [],
   title = "Latest",
   subtitle = "Our Blog",
 }) {
-
-
   if (!blogs || blogs.length === 0) {
     return null;
   }
 
   return (
-    <SectionLayout
-    id={'blogs'}
-      title={title}
-      subtitle={subtitle}
-      classname={"bg-gradient-to-r from-green-400"}
-    >
+    <SectionLayout id={"blogs"} title={title} subtitle={subtitle} stroke="blue">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 ">
         <div className="flex flex-col gap-4">
           {blogs.slice(1, 3).map((blog, index) => (

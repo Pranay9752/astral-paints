@@ -12,6 +12,7 @@
     "@next/env": "^15.3.0",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
+    "framer-motion": "^12.6.5",
     "graphql-request": "^7.1.2",
     "next": "15.3.0",
     "react": "^19.0.0",

@@ -35,7 +35,7 @@ function SectionLayout({
 
           <div className="flex items-center mb-8">
             <motion.h1
-              className="text-3xl font-bold mr-4"
+              className="text-xl md:text-3xl font-bold mr-4"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -45,8 +45,9 @@ function SectionLayout({
 
             <motion.div
               className={cn(
-                "h-2 bg-gradient-to-r from-orange-400 rounded-full hidden md:block",
-                classname
+                "h-2 bg-gradient-to-r from-orange-400 rounded-full ",
+                classname,
+                buttonData && "hidden md:block"
               )}
               initial={{ width: 0, opacity: 0 }}
               animate={

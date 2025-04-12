@@ -38,7 +38,7 @@ export default function AboutSection({
 
       <motion.div
         ref={ref}
-        className="relative w-full h-[600px] overflow-hidden shadow-lg"
+        className="relative w-full h-[300px] md:h-[600px] overflow-hidden shadow-lg"
         initial={{ opacity: 0, scale: 0.95 }}
         animate={
           isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }

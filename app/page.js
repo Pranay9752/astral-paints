@@ -15,24 +15,47 @@ import Navbar from "@/components/layouts/Navbar";
 export async function generateMetadata() {
   const { seo } = await getHomepageData();
 
+  const {
+    title,
+    metaDesc,
+    metaKeywords,
+    canonical,
+    opengraphType,
+    opengraphSiteName,
+    opengraphTitle,
+    opengraphDescription,
+    opengraphUrl,
+    opengraphImage,
+    schema,
+  } = seo;
+
+  const ogImage = opengraphImage?.mediaItemUrl;
+
   return {
-    title: seo.title,
-    description: seo.metaDesc,
+    title: `Astral Paints | ${title}`,
+    description: metaDesc || "",
+    keywords: metaKeywords || "",
+    icons: {
+      icon: "/astral-fav-icon.png", 
+    },
+    alternates: {
+      canonical: canonical,
+    },
     openGraph: {
-      title: seo.opengraphTitle || seo.title,
-      description: seo.opengraphDescription || seo.metaDesc,
-      url: seo.opengraphUrl,
-      images: [
-        {
-          url: seo.opengraphImage?.mediaItemUrl || "default.jpg",
-        },
-      ],
+      type: opengraphType || "website",
+      siteName: opengraphSiteName || "",
+      title: opengraphTitle || title,
+      description: opengraphDescription || metaDesc,
+      url: opengraphUrl || canonical,
+      images: ogImage ? [{ url: ogImage, alt: title }] : [],
     },
     twitter: {
-      card: "summary_large_image",
-      title: seo.title,
-      description: seo.metaDesc,
-      images: [seo.opengraphImage?.mediaItemUrl],
+      title: opengraphTitle || title,
+      description: opengraphDescription || metaDesc,
+      images: ogImage ? [ogImage] : [],
+    },
+    other: {
+      ...(schema?.raw && { "application/ld+json": schema.raw }),
     },
   };
 }

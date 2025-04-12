@@ -9,7 +9,7 @@ const navLinks = [
   { label: "Category", href: "category" },
   { label: "Services", href: "services" },
   { label: "Colours", href: "colours" },
-  { label: "Downloads", href: "downloads" },
+  // { label: "Downloads", href: "downloads" },
   { label: "Become A Dealer", href: "become-a-dealer" },
   { label: "Blogs", href: "blogs" },
   { label: "Contact", href: "contact" },
@@ -36,7 +36,7 @@ const Navbar = () => {
             alt="Astral Paints Logo"
             width={150}
             height={50}
-            className="h-12 w-auto"
+            className="h-8 w-auto md:h-10 lg:h-12 xl:h-16"
           />
         </button>
 
@@ -70,19 +70,18 @@ const Navbar = () => {
           </svg>
         </button>
 
-        {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-6">
           {navLinks.map((link) => (
             <button
               key={link.href}
               onClick={() => scrollToSection(link.href)}
-              className="font-medium hover:text-blue-200 transition duration-300"
+              className="font-medium text-xs md:text-sm lg:text-base hover:text-blue-200 transition duration-300"
             >
               {link.label}
             </button>
           ))}
           <Link href="/enquire">
-            <button className="bg-white text-blue-700 font-semibold text-sm px-6 py-2 rounded-full hover:bg-blue-50 transition duration-300">
+            <button className="bg-white text-blue-700 font-semibold text-sm md:text-sm lg:text-base  px-4 py-2 md:px-6 md:py-3 rounded-full hover:bg-blue-50 transition duration-300">
               Enquire Now
             </button>
           </Link>

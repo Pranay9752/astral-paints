@@ -1,12 +1,9 @@
 "use client";
 
-import React, {
-  useState,
-  useEffect,
-  useRef,Children
-} from "react";
+import React, { useState, useEffect, useRef, Children } from "react";
 import Slide from "./Slide";
 import { cn } from "@/utils/cn";
+import { motion } from "framer-motion";
 
 // const SlideShow = ({ children, className, interval = 3000 }) => {
 //   const [index, setIndex] = useState(0);
@@ -47,7 +44,6 @@ import { cn } from "@/utils/cn";
 //   );
 // };
 
-
 // const SlideShow = ({ children, className = "", interval = 5000 }) => {
 //   const [currentIndex, setCurrentIndex] = useState(0);
 //   const slides = React.Children.toArray(children);
@@ -55,11 +51,11 @@ import { cn } from "@/utils/cn";
 
 //   useEffect(() => {
 //     if (totalSlides <= 1) return; // Don't set interval if only one slide
-    
+
 //     const timer = setInterval(() => {
 //       setCurrentIndex((prevIndex) => (prevIndex + 1) % totalSlides);
 //     }, interval);
-    
+
 //     return () => clearInterval(timer);
 //   }, [interval, totalSlides]);
 
@@ -77,7 +73,7 @@ import { cn } from "@/utils/cn";
 
 //   return (
 //     <div className={cn("relative overflow-hidden w-full", className)}>
-//       <div 
+//       <div
 //         className="flex flex-col transition-transform duration-1000 ease-in-out h-full"
 //         style={{
 //           transform: `translateY(-${currentIndex * 100}%)`,
@@ -86,7 +82,7 @@ import { cn } from "@/utils/cn";
 //       >
 //         {slides.map((slide, idx) => (
 //           // <div key={idx} className="w-full flex-shrink-0" style={{ height: `${100 / totalSlides}%` }}>
-//            <>{slide}</> 
+//            <>{slide}</>
 //           // </div>
 //         ))}
 //       </div>
@@ -105,65 +101,68 @@ import { cn } from "@/utils/cn";
 //         ))}
 //       </div>
 
-     
 //     </div>
 //   );
 // };
 
-
-const SlideShow = ({ children, className }) => {
+const SlideShow = ({ children, autoPlaySpeed = 10000, className }) => {
   const slides = Children.toArray(children);
-  // Clone first slide to create seamless infinite effect
-  const extendedSlides = [...slides];
-  const extendedSlidesLength = extendedSlides.length;
-
   const [activeIndex, setActiveIndex] = useState(0);
-  const [transitionEnabled, setTransitionEnabled] = useState(true);
+  const carouselRef = useRef(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((prev) => {
-        if (prev < extendedSlidesLength - 1) {
-          return prev + 1;
-        }
-        return prev;
-      });
-    }, 5000);
+      setActiveIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    }, autoPlaySpeed);
 
     return () => clearInterval(interval);
-  }, [extendedSlidesLength]);
- 
-  useEffect(() => {
-    if (activeIndex === extendedSlidesLength - 1) {
-      const timeout = setTimeout(() => {
-        setTransitionEnabled(false);
-        setActiveIndex(0);
-        setTimeout(() => setTransitionEnabled(true), 0);
-      }, 1000); // Match transition duration
+  }, [slides.length, autoPlaySpeed]);
 
-      return () => clearTimeout(timeout);
-    }
-  }, [activeIndex, extendedSlidesLength]);
+  const xPosition = -activeIndex * (100 / slides.length);
 
   return (
-    <div className={`${className} overflow-hidden`}>
-      <div
-        className="transition-transform duration-1000 ease-in-out"
-        style={{
-          transform: `translateY(-${activeIndex * 100}vh)`,
-          transition: transitionEnabled ? 'transform 1000ms ease-in-out' : 'none',
+    <div
+      className={`relative overflow-hidden w-full ${className || ""}`}
+      ref={carouselRef}
+    >
+      <motion.div
+        className="flex h-full"
+        animate={{ x: `${xPosition}%` }}
+        transition={{
+          type: "tween",
+          duration: 0.8,
+          ease: "easeInOut",
         }}
+        style={{ width: `${slides.length * 100}%` }}
       >
-        {extendedSlides.map((slide, index) => (
-          <div key={index} className="h-[100vh]">
+        {slides.map((slide, index) => (
+          <div
+            key={index}
+            className="flex-shrink-0 w-full h-full"
+            style={{ width: `${100 / slides.length}%` }}
+          >
             {slide}
           </div>
+        ))}
+      </motion.div>
+
+      <div className="absolute top-1/2 right-6 -translate-y-1/2 flex flex-col justify-end items-end gap-1">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setActiveIndex(index)}
+            className={`h-8 w-1 rounded-full transition-all duration-300 shadow-md cursor-pointer hover:w-2 ${
+              activeIndex === index
+                ? "bg-white "
+                : "bg-white/80  hover:bg-white"
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
         ))}
       </div>
     </div>
   );
 };
-
 
 SlideShow.Slide = Slide;
 

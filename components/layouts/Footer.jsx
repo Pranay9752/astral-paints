@@ -51,10 +51,7 @@ const Footer = ({ backgroundImage }) => {
           ))}
         </div>
         <hr className="border-gray-500 mb-16" />
-
-        {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 px-4">
-          {/* Company Logo and Contact */}
           <div className="lg:col-span-1">
             <div className="mb-6">
               <Image
@@ -114,7 +111,6 @@ const Footer = ({ backgroundImage }) => {
             </div>
           </div>
 
-          {/* About Links */}
           <div className="lg:col-span-1">
             <h3 className="font-semibold text-lg mb-4">About</h3>
             <ul className="space-y-3">
@@ -145,7 +141,6 @@ const Footer = ({ backgroundImage }) => {
             </ul>
           </div>
 
-          {/* Category Links */}
           <div className="lg:col-span-1">
             <h3 className="font-semibold text-lg mb-4">Category</h3>
             <ul className="space-y-3">
@@ -192,7 +187,6 @@ const Footer = ({ backgroundImage }) => {
             </ul>
           </div>
 
-          {/* Services Links */}
           <div className="lg:col-span-1">
             <h3 className="font-semibold text-lg mb-4">Services</h3>
             <ul className="space-y-3">
@@ -231,7 +225,6 @@ const Footer = ({ backgroundImage }) => {
             </ul>
           </div>
 
-          {/* Newsletter and Downloads */}
           <div className="lg:col-span-1">
             <div className="mb-8">
               <h3 className="font-semibold text-lg mb-2">
@@ -334,7 +327,6 @@ const Footer = ({ backgroundImage }) => {
         </div>
       </div>
 
-      {/* Bottom Footer */}
       <div className="bg-blue-950 py-4">
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center text-sm">
           <Link

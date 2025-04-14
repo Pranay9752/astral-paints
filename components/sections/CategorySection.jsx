@@ -1,12 +1,10 @@
 import SectionLayout from "../layouts/SectionLayout";
 
 export default function CategorySection({ categories, title, subtitle }) {
-  // Make sure we have categories data
   if (!categories || categories.length < 5) {
     return <div>Loading categories...</div>;
   }
 
-  // Separate the first category for the large feature card
   const featuredCategory = categories[0];
   const remainingCategories = categories.slice(1);
 
@@ -60,5 +58,3 @@ export default function CategorySection({ categories, title, subtitle }) {
   );
 }
 
-// Example usage:
-// <PaintCategoryShowcase categories={categoriesFromApi} />

@@ -32,11 +32,11 @@ export default function ServiceSection({ categories, title, subtitle }) {
 
   return (
     <SectionLayout
-    id={'services'}
+      id={'services'}
       title={title}
       subtitle={subtitle}
-stroke="yellow"
->
+      stroke="yellow"
+    >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {services.map((service) => (
           <ServiceCard
